@@ -57,7 +57,7 @@ export function MenuProvider({ children }: { children: ReactNode }) {
   }, [menuItems]);
 
   const addMenuItem = useCallback((item: Omit<MenuItem, "id">) => {
-    const id = `custom-${Date.now()}`;
+    const id = `custom-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
     setMenuItems((prev) => [...prev, { ...item, id, isDefault: false }]);
   }, []);
 

@@ -13,7 +13,7 @@ export default function Navbar() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const settingsRef = useRef<HTMLDivElement>(null);
 
-  // Close settings panel on outside click
+  // Close settings panel on outside click or Escape key
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (
@@ -23,11 +23,21 @@ export default function Navbar() {
         setSettingsOpen(false);
       }
     }
-    if (settingsOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setSettingsOpen(false);
+        setMobileMenuOpen(false);
+      }
     }
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [settingsOpen]);
+    if (settingsOpen || mobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [settingsOpen, mobileMenuOpen]);
 
   const closeMenus = () => {
     setMobileMenuOpen(false);

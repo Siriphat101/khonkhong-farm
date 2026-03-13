@@ -15,10 +15,18 @@ export default function MenuManager() {
   const [newHref, setNewHref] = useState("");
   const [newIcon, setNewIcon] = useState("📋");
 
-  const handleAdd = () => {
-    if (!newLabel.trim() || !newHref.trim()) return;
+  const isValidPath = (path: string): boolean => {
+    const trimmed = path.trim();
+    if (!trimmed) return false;
+    if (/^javascript:/i.test(trimmed)) return false;
+    if (/[<>"'{}|\\^`\s]/.test(trimmed)) return false;
+    return true;
+  };
 
-    const href = newHref.startsWith("/") ? newHref : `/${newHref}`;
+  const handleAdd = () => {
+    if (!newLabel.trim() || !isValidPath(newHref)) return;
+
+    const href = newHref.trim().startsWith("/") ? newHref.trim() : `/${newHref.trim()}`;
     addMenuItem({ label: newLabel.trim(), href, icon: newIcon });
     setNewLabel("");
     setNewHref("");
@@ -95,10 +103,11 @@ export default function MenuManager() {
             </div>
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">
+            <label htmlFor="menu-label" className="block text-xs font-medium text-gray-600 mb-1">
               ชื่อเมนู
             </label>
             <input
+              id="menu-label"
               type="text"
               value={newLabel}
               onChange={(e) => setNewLabel(e.target.value)}
@@ -107,10 +116,11 @@ export default function MenuManager() {
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">
+            <label htmlFor="menu-href" className="block text-xs font-medium text-gray-600 mb-1">
               ลิงก์ (URL path)
             </label>
             <input
+              id="menu-href"
               type="text"
               value={newHref}
               onChange={(e) => setNewHref(e.target.value)}
@@ -121,7 +131,7 @@ export default function MenuManager() {
           <div className="flex gap-2">
             <button
               onClick={handleAdd}
-              disabled={!newLabel.trim() || !newHref.trim()}
+              disabled={!newLabel.trim() || !isValidPath(newHref)}
               className="flex-1 px-3 py-2 text-sm bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               เพิ่มเมนู
