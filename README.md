@@ -143,7 +143,7 @@ khonkhong-farm/
 
 ## 🔮 แผนพัฒนาในอนาคต
 
-- เชื่อมต่อเซ็นเซอร์จริง (IoT) - implement `SensorDataProvider` trait สำหรับ Pi 3B / ESP32
+- เชื่อมต่อเซ็นเซอร์จริง (IoT) - implement `SensorDataProvider` trait สำหรับ Raspberry Pi 3B / ESP32
 - เชื่อมต่อ LLM API - implement `AiAnalyzer` trait สำหรับ AI ที่ฉลาดขึ้น
 - เพิ่ม Database layer (PostgreSQL / SQLite)
 - ระบบแจ้งเตือน (Line, Email)
