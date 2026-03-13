@@ -141,37 +141,37 @@ export default function Dashboard() {
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
         <SensorChart
-          data={history.temperature || []}
+          data={history.temperature}
           title="🌡️ อุณหภูมิ"
           color="#ef4444"
           unit="°C"
         />
         <SensorChart
-          data={history.humidity || []}
+          data={history.humidity}
           title="💧 ความชื้นอากาศ"
           color="#3b82f6"
           unit="%"
         />
         <SensorChart
-          data={history.soilMoisture || []}
+          data={history.soilMoisture}
           title="🌱 ความชื้นดิน"
           color="#22c55e"
           unit="%"
         />
         <SensorChart
-          data={history.ph || []}
+          data={history.ph}
           title="⚗️ ค่า pH ดิน"
           color="#a855f7"
           unit=""
         />
         <SensorChart
-          data={history.light || []}
+          data={history.light}
           title="☀️ ความเข้มแสง"
           color="#eab308"
           unit=" lux"
         />
         <SensorChart
-          data={history.windSpeed || []}
+          data={history.windSpeed}
           title="💨 ความเร็วลม"
           color="#06b6d4"
           unit=" km/h"

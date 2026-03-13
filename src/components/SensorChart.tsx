@@ -21,9 +21,10 @@ export default function SensorChart({
   const range = maxVal - minVal || 1;
   const chartHeight = 120;
 
+  const pointCount = data.length > 1 ? data.length - 1 : 1;
   const points = data
     .map((d, i) => {
-      const x = (i / (data.length - 1)) * 100;
+      const x = (i / pointCount) * 100;
       const y = chartHeight - ((d.value - minVal) / range) * chartHeight;
       return `${x},${y}`;
     })
