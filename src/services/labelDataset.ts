@@ -56,7 +56,8 @@ export function parseLLMResponse(
   }>;
   try {
     parsed = JSON.parse(jsonMatch[0]);
-  } catch {
+  } catch (e) {
+    console.warn("Failed to parse LLM response as JSON:", e, jsonMatch[0]);
     return [];
   }
 

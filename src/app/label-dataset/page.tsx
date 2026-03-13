@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { LabeledImage, LabelClass } from "@/types";
 import {
   buildLabelingPrompt,
@@ -46,6 +46,11 @@ export default function LabelDatasetPage() {
   const [isLabeling, setIsLabeling] = useState(false);
   const [showApiKey, setShowApiKey] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const imagesRef = useRef<LabeledImage[]>(images);
+
+  useEffect(() => {
+    imagesRef.current = images;
+  }, [images]);
 
   const selectedImage = images.find((img) => img.id === selectedImageId);
 
@@ -111,7 +116,7 @@ export default function LabelDatasetPage() {
         return;
       }
 
-      const image = images.find((img) => img.id === imageId);
+      const image = imagesRef.current.find((img) => img.id === imageId);
       if (!image) return;
 
       setImages((prev) =>
@@ -156,7 +161,7 @@ export default function LabelDatasetPage() {
         );
       }
     },
-    [apiKey, classes, customPrompt, images, model]
+    [apiKey, classes, customPrompt, model]
   );
 
   // Label all pending images
