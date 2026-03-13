@@ -44,3 +44,11 @@ export interface AiInsight {
   fertilizers: FertilizerRecommendation[];
   summary: string;
 }
+
+export interface MenuItem {
+  id: string;
+  href: string;
+  label: string;
+  icon: string;
+  isDefault?: boolean;
+}

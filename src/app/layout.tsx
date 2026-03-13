@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { MenuProvider } from "@/contexts/MenuContext";
 
 export const metadata: Metadata = {
   title: "KhonKhong Farm - ระบบฟาร์มอัตโนมัติ",
@@ -16,8 +17,10 @@ export default function RootLayout({
   return (
     <html lang="th">
       <body className="antialiased bg-gray-50">
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
+        <MenuProvider>
+          <Navbar />
+          <main className="min-h-screen">{children}</main>
+        </MenuProvider>
       </body>
     </html>
   );
