@@ -13,6 +13,7 @@ import { MenuItem } from "@/types";
 const DEFAULT_MENU_ITEMS: MenuItem[] = [
   { id: "dashboard", href: "/", label: "แดชบอร์ด", icon: "📊", isDefault: true },
   { id: "assistant", href: "/assistant", label: "AI ผู้ช่วยฟาร์ม", icon: "🤖", isDefault: true },
+  { id: "label-dataset", href: "/label-dataset", label: "Label Dataset", icon: "🏷️", isDefault: true },
 ];
 
 const STORAGE_KEY = "khonkhong-farm-menu-items";

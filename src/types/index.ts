@@ -52,3 +52,37 @@ export interface MenuItem {
   icon: string;
   isDefault?: boolean;
 }
+
+// Dataset Labeling Types
+export interface BoundingBox {
+  classId: number;
+  className: string;
+  xCenter: number;
+  yCenter: number;
+  width: number;
+  height: number;
+  confidence: number;
+}
+
+export interface LabeledImage {
+  id: string;
+  fileName: string;
+  dataUrl: string;
+  imageWidth: number;
+  imageHeight: number;
+  boxes: BoundingBox[];
+  status: "pending" | "labeling" | "done" | "error";
+  error?: string;
+}
+
+export interface LabelClass {
+  id: number;
+  name: string;
+}
+
+export interface LabelingConfig {
+  apiKey: string;
+  model: string;
+  classes: LabelClass[];
+  prompt: string;
+}
